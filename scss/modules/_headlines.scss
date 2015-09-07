@@ -1,0 +1,159 @@
+// ==========================================================================
+// Headlines
+// ==========================================================================
+
+
+@mixin hdln-divider($fz: null, $fw: null, $tt: null, $c: null, $ld: 0, $tr: 0, $brdr-c: $black, $brdr-w: 1px, $padding: 12px) {
+	@extend .pos-rel;
+	@include divider($brdr-c, $brdr-w);
+	background-color: $white;
+	@if not $fz {
+		$fz: $base-font-size;
+	}
+	@include leader((lines-for-font-size($fz)/2)+$ld);
+	@include trailer((lines-for-font-size($fz)/2)+$tr);
+
+	.hdln__text {
+		@include typo((
+			fz: $fz,
+			fw: $fw,
+			c : $c,
+			tt: $tt
+		)...);
+		@include abs-align((
+			h-align: center,
+			v-align: bottom, 
+			v-offset: (rhythm(lines-for-font-size($fz), $fz)/2)+em($brdr-w, $fz)/2
+		));
+		padding: 0 $padding;
+		background-color: inherit;
+	}
+}
+	
+
+
+.hdln {
+	@include m(name) {
+		font-size: em(22px);
+		font-weight: $font-weight--bold ;
+		color: darken($white,2%);
+		@include top-bottom-borders(
+			4px, darken($white, 13%)
+			);
+		padding: 2px 1px;
+		display: inline-block;
+		margin: 0 0 32px;
+		text-transform: uppercase;
+	}
+
+	@include m(lead) {
+		font-size: em(25px);
+		font-weight: $font-weight--x-light;
+		color: darken(white, 4%);
+		margin: 1px 0;
+		text-transform: uppercase;
+
+	}
+
+	@include m(main) {
+		font-size: em(64px);
+		font-weight: $font-weight--ultra-bold;
+		color: palette(white, trans);
+		margin: 1px 0;
+		text-transform: uppercase;
+		line-height: (70px / 60px);
+	}
+
+	@include m(tail) {
+		font-size: em(25px);
+		font-style: italic;
+		color: darken(white, 4%);
+	}
+
+
+	@include m(intro) {
+		@include typo((
+			fz: $fz-1-lg,
+			fw: $fw-light,
+			tr: 2,
+			c: palette(black, x-light),
+		)...);
+	}
+
+	@include m(divider) {
+		@background-color: $white;
+		@include hdln-divider((
+			fz: 12px,
+			fw: $font-weight--medium,
+			c: palette(black, light),
+			ld: 1,
+			tr: .5,
+			padding: 20px,
+			brdr-w: 4px,
+			brdr-c: red,
+			tt: uppercase
+		)...);
+	}
+
+	@include m(section) {
+		font-family: $font-family--secondary;
+		font-size: 32px;
+		margin-bottom: 13px;
+		font-weight: $font-weight--medium;
+	}
+
+	@include m(mini) {
+		font-size: 14px;
+		font-weight: bold;
+		color: lighten(palette(grey), 8%);
+		text-transform: uppercase;
+		margin-bottom: 3px	;
+	}
+
+	@include m(cover-caption) {
+		text-transform: uppercase;
+		font-size: 18px;
+		color: palette(white);
+		font-weight: $font-weight--bold;
+		margin-bottom: 2px;
+	}
+
+	@include m(subsection) {
+		font-size: 36px;
+		margin: 13px 0 0;
+		font-weight: $font-weight--light;
+		color: $pale-sky;
+	}
+
+	@include m(feature) {
+		@include top-bottom-borders(
+			1px, palette(grey, x-light)
+			);
+		font-family: $font-family--secondary;
+		font-size: 32px;
+		font-weight: $font-weight--light;
+		color: $pale-sky;
+		margin: 0 0 30px;
+		padding: 8px 0;
+
+	}
+
+	@include m(feature-mini) {
+		font-size: 14px;
+		color: $pale-sky;
+		font-weight: $font-weight--bold;
+		margin: 15px 0;
+		text-transform: uppercase;
+
+	}
+	@include m(feature-mini2) {
+		font-size: 20px;
+		color: darken($pale-sky,20%);
+		font-weight: $font-weight--medium;
+		margin: 15px 0 6px;
+	}
+
+	@include m(feature-divider) {
+		@include hdln-divider();
+	}
+}

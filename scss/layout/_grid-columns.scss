@@ -1,0 +1,69 @@
+// ==========================================================================
+// Grid Columns
+// ==========================================================================
+
+// Calculate grid columns
+
+/* .grid__col {
+  @include mq(medium) {
+    @include g-columns; 
+  }
+}
+
+// Column styles
+
+[class^="grid__col--"] {
+  @include mq(small)  {
+    margin-top: em(12px);
+    margin-bottom: em(12px);
+  }
+  // @include mq(medium) {
+  //   @include doubly(percentage($g-gutter-width / $context));    
+  //   float: left;
+  //   min-height: 1px;
+  //   padding-left: 10px;
+  //   padding-right: 10px;
+  // }
+
+  @include mq(medium) {
+    float: left;
+    min-height: 1px;
+    padding-left: $g-gutter-width;
+    padding-right: $g-gutter-width;
+  }
+
+}
+
+// half gutter
+
+.grid.-half-gutter [class^="grid__col--"] {
+  @include mq(medium) {
+    float: left;
+    min-height: 1px;
+    padding-left: ($g-gutter-width/2);
+    padding-right: ($g-gutter-width/2);
+  }
+}
+
+// double gutter
+.grid.-double-gutter  {
+  [class^="grid__col--"] {
+    @include mq(medium) {
+      float: left;
+      min-height: 1px;
+      padding-left: ($g-gutter-width*2);
+      padding-right: ($g-gutter-width*2);
+      &:first-child {
+        padding-left: $g-gutter-width;
+      }
+      &:last-child {
+        padding-right: $g-gutter-width;
+      } 
+    }
+  }
+
+
+  // [class^="grid__col--"] + [class^="grid__col--"] {
+  //   padding-left: ($g-gutter-width * 3);
+  // }
+} */

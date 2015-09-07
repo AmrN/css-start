@@ -1,0 +1,56 @@
+// ==========================================================================
+// Icons
+// ==========================================================================
+
+// Logo
+
+.site-logo {
+	@include img-replace("logo.svg", 115px, 45px, inline-block);
+}
+
+// UI
+
+.icn {
+
+	// Nav Toggle
+	@include m(nav-toggle) {
+		@extend %icn--ui;
+		width: 25px;
+		height: 17px;
+		border-top: solid 3px palette(grey);
+		border-bottom: solid 3px palette(grey);
+		position: relative;
+		@include p-el(before, 25px, 3px) {
+			background: palette(grey, light);
+			top: 4px;
+		}
+	}
+}
+
+// edit flaticons
+
+.icons {
+	margin: 7px 0;
+}
+.icn-separator:before {
+	content: "/";
+	font-size: 33px;
+	font-weight: $font-weight--thin;
+	font-style: italic;
+	line-height: 0;
+	letter-spacing: 6px;
+	color: $buddha-gold;
+}
+
+[class^="flaticon-"]:before, 
+[class^="flacticon-"]:after,
+[class*=" flaticon-"]:before,
+[class*=" flaticon-"]:after {
+	font-family: Flaticon;
+	font-size: 24px;
+	color: $buddha-gold;
+	letter-spacing: 2px;
+	line-height: 0;
+	margin: 0;
+	font-weight: $font-weight--medium;
+}

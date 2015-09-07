@@ -1,0 +1,200 @@
+// ==========================================================================
+// Global Config
+// ==========================================================================
+
+// Font Stacks
+
+// $font-url--google        : 'http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900';
+$font-url--google--primary	     : 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,700,900';
+$font-url--google--secondary      :'http://fonts.googleapis.com/css?family=Merriweather:400,300,700';
+
+$font-family--primary    : 'Source Sans Pro', sans-serif;
+$font-family--secondary  : 'Merriweather', Helvetica, Arial, sans-serif;
+
+// Font Weights
+
+$font-weight--thin       : 100;
+$font-weight--x-light    : 200;
+$font-weight--light      : 300;
+$font-weight--medium     : 400;
+$font-weight--bold       : 700;
+$font-weight--ultra-bold : 900;
+
+$fw-thin       : 100;
+$fw-x-light    : 200;
+$fw-light      : 300;
+$fw-medium     : 400;
+$fw-bold       : 700;
+$fw-ultra-bold : 900;
+
+// Descriptive Base Colors
+
+$white : #fff;
+$black : #0b0b0b;
+$grey  : #797e83;
+
+$goldenrod      : #F9D76D;
+$fountain-blue  : #52bab3;
+$emerald        : #5ece7f;
+$sunglo         : #e67478;
+$coral          : #ff784f;
+$purple-majesty : #9279c3;
+$scooter        : #39add1;
+$pampas         : #EDEAE6;
+$beigedark      : #E0DEDA;
+$pale-sky       : #697883;
+$buddha-gold    : #D18E00;
+
+// Color Usage
+
+$color-primary   : $goldenrod;
+$color-secondary : $scooter;
+$color-accent    : $emerald;
+$color-shadow    : rgba($black, .2);
+
+// Color Palette Modifiers
+
+$color-palettes: (
+	white: (
+		base 	  : $white,
+		trans 	  : fade-out($white, .14),
+		x-trans   : fade-out($white, .30),
+		xx-trans  : fade-out($white, .60),
+		xxx-trans : fade-out($white, .80)
+	),
+	grey: (
+		xx-light : lighten($grey, 43%),
+		x-light  : lighten($grey, 35%),
+	  light    : lighten($grey, 12%),
+	  base     : $grey,
+	 	dark     : darken($grey, 8%),
+	 	x-dark   : darken($grey, 16%)
+	),
+	black: (
+		x-light  : lighten($black, 20%),
+		light    : lighten($black, 10%),
+		base     : $black,
+		dark     : darken($black, 10%)
+	)
+);
+
+// UI Colors
+
+$ui-colors: (
+	default : $fountain-blue,
+	success : $emerald,
+	error   : $sunglo,
+	warning : $coral,
+	info    : $purple-majesty
+);
+
+// Text
+
+// compass vertical rhythm
+
+$base-font-size: 16px;
+$base-line-height: 24px;
+$round-to-nearest-half-line: true;
+
+
+// modular scale
+
+$ms-base  : $base-font-size 20px;
+$ms-ratio : $golden;
+
+// @debug ms-list(-3,10,$ms-base,$ms-ratio);
+
+
+// font sizes
+
+// $fz-sm     : $base-font-size * 0.75;
+// $fz-md     :  $base-font-size;
+// $fz-lg     :  $base-font-size * 1.5;
+// $fz-x-lg   :  $base-font-size * 2.25;
+// $fz-xx-lg  : $base-font-size * 3;
+// $fz-xxx-lg : $base-font-size * 4; 
+
+$fz-4-sm :  ms(-2);
+$fz-3-sm :  ms(-1);
+$fz-2-sm :  ms(0);
+$fz-1-sm :  ms(1);
+$fz-md   :  ms(2);
+$fz-1-lg :  ms(3);
+$fz-2-lg :  ms(4); 
+$fz-3-lg :  ms(5);
+$fz-4-lg :  ms(6);
+$fz-body : $fz-2-sm;
+
+$fz : (
+	fz-4-sm :  $fz-4-sm,
+	fz-3-sm :  $fz-3-sm,
+	fz-2-sm :  $fz-2-sm,
+	fz-1-sm :  $fz-1-sm,
+	fz-md   :  $fz-md,
+	fz-1-lg :  $fz-1-lg,
+	fz-2-lg :  $fz-2-lg,
+	fz-3-lg :  $fz-3-lg,
+	fz-4-lg :  $fz-4-lg,
+	fz-body :  $fz-2-sm
+);
+
+// white space
+
+$ws-3-sm  : 0.5;
+$ws-2-sm  : 1;
+$ws-1-sm  : 1.5;
+$ws-md    : 2;
+$ws-1-lg  : 3;
+$ws-2-lg  : 4;
+$ws-3-lg  : 5;
+$ws-4-lg  : 6;
+
+$ws : (
+	3-sm  : $ws-3-sm,
+	2-sm  : $ws-2-sm,
+	1-sm  : $ws-1-sm,
+	md    : $ws-md,	
+	1-lg  : $ws-1-lg,
+	2-lg  : $ws-2-lg,
+	3-lg  : $ws-3-lg,
+	4-lg  : $ws-4-lg
+);
+
+// $base__font-size : 16px;
+// $base__line      : 24px;
+$letter-space    : 1px;
+
+// Border radius
+
+$br--default    : .4em;
+$br--round      : 50%;
+
+// Transitions
+
+$trns-duration  : .3s;
+
+// Path to Assets
+
+$path--rel      : "../img";
+
+// Grid
+
+$g-col-width    : 65px;
+// $g-gutter-width : 20px;
+$g-gutter-width : 10px;
+$g-col-count    : 12;
+$g-cont-max-w   : 1050px;
+
+// Breakpoints
+
+$brkpoint-sm    : 1px;
+$brkpoint-md    : 768px;
+$brkpoint-lg    : 1100px;
+
+// Media Query names
+
+$mq-map: (
+	small  : sm,
+	medium : md,
+	large  : lg
+);

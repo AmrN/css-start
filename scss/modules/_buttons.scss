@@ -1,0 +1,69 @@
+// ==========================================================================
+// Buttons
+// ==========================================================================
+
+$btn-font-size: 14px;
+
+.btn {
+  @extend .text-center;
+	@include bg-colors($ui-colors);
+
+  @include m(large) {
+    padding: 23px 40px;
+    border-radius: $br--default;
+  }
+
+  @include m(medium) {
+    padding: 13px 30px;
+    border-radius: $br--default;
+  }
+
+  @include m(small) {
+    padding: 5px 13px;
+    border-radius: $br--default;
+  }
+
+  @include m(white-trans) {
+    font-size: $btn-font-size;
+    color: $white;
+    font-weight: $font-weight--bold;
+    text-transform: uppercase;
+    background: palette(white, xxx-trans);
+    transition: all $trns-duration;
+    display: inline-block;
+    &:hover {
+      color: palette(grey, dark);
+      background: palette(white, trans);
+    }
+  }
+
+  @include m(cta) {
+    font-size: $btn-font-size;
+    font-weight: $font-weight--bold;
+    text-transform: uppercase;
+    color: palette(grey, dark);
+    background-color: $goldenrod;
+    transition: all $trns-duration;
+    display: inline-block;
+    border-bottom: 3px solid darken($goldenrod, 20%);
+
+    &:hover {
+      background-color: darken($goldenrod, 10%);
+    }
+  }
+}
+
+[class^="btn--"] {
+  @extend %text-center;
+  @extend %btn;
+  margin-bottom: em(20px, 14px); 
+  @include mq(small) {
+    width: 100%;
+  }
+  @include mq(medium) { 
+    width: auto;
+    display: inline-block;
+    // @include doubly(20px);
+  }
+}
+

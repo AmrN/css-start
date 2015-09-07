@@ -1,0 +1,22 @@
+// ======================================
+// Text
+// ======================================
+
+.text {
+	@include m(intro) {
+		color: palette(grey, dark);
+		@include trailer(1);
+	}
+
+	@include m(cover-caption) {
+		font-family: $font-family--secondary;
+		font-size: 14px;
+		color: $goldenrod;
+	    font-style: italic;
+
+	}
+
+	@include m(mini) {
+		font-size: 16px;
+	}
+}

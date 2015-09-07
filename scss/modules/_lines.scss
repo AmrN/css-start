@@ -1,0 +1,28 @@
+// ==========================================================================
+// Lines
+// ==========================================================================
+
+.divider-arrow-top {
+	position: relative;
+	background-color: $white;
+	@include divider(palette(grey, x-light));
+
+	@include p-el(after, 12px, 12px) {
+		border-right: 2px solid palette(grey, x-light);
+		border-bottom: 2px solid palette(grey, x-light);
+		// @extend .centered-h-abs;
+		// @extend .align-top-abs;	
+		@include abs-align(
+			(
+				h-align : center,
+				v-align : top-out,
+				v-offset: rhythm(.5) + em(6px),
+				rotate  : -135deg 
+		
+			));
+		background-color: inherit;
+
+
+	}
+	margin-top: 20px;
+}

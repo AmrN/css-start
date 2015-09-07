@@ -1,0 +1,79 @@
+// =============================
+// Nav
+// =============================
+
+.nav {
+	padding: em(14px) em(25px) em(10px);
+	@extend %clearfix;
+	@include e(group) {
+		// @extend %clearfix;
+
+	}
+
+	@include e(item) {
+
+		  @extend .pull-left;
+		  margin: 0 em(10px);
+
+		a {
+			font-size: em(14px);
+			padding: 0 1px;
+			display: block;
+			color: darken($white, 10%);
+			text-transform: uppercase;
+			font-weight: $font-weight--bold;
+			// padding:
+			border-bottom: 3px solid transparent;
+			transition: all $trns-duration;
+
+			&:hover {
+				@extend %nav-item-highlight;
+			}
+		}
+
+		@include m(active) {
+			a {
+				@extend %nav-item-highlight;
+				border-color: $goldenrod;
+			}
+		}
+
+		@include m(cta) {
+			margin: -2px 2px 0 0px;
+			a { 
+				padding: 1px 6px;
+				border: none;
+				background-color: $goldenrod;
+ 				color: palette(grey, dark);	
+
+				&:hover {
+					background-color: darken($goldenrod, 10%);
+				}
+
+			}
+
+			@include m(cta-first) {
+				a {
+					padding-right: 8px;
+					border-radius: 3px 0 0 3px;
+				}
+			}
+			@include m(cta-last) {
+				a {
+					padding-left: 8px;
+					border-radius: 0 3px 3px 0;
+				}
+			}
+		}
+
+		@include m(first) {
+			margin-left: 0;
+
+		}
+
+		@include m(last) {
+			margin-right: 0;
+
+		}
+	}
+}

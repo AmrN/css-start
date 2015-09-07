@@ -1,0 +1,33 @@
+@include gridle_setup( (
+	context : 12,
+	gutter-width : 15px,
+) );
+
+// @include gridle_register_state( xs, (
+//     max-width : 768px
+// ) );
+// @include gridle_register_state( sm , (
+//     min-width : 768px
+// ) );
+// @include gridle_register_state( md, (
+//     min-width : 992px
+// ) );
+// @include gridle_register_state( lg, (
+//     min-width : 1200px
+// ) );
+@include gridle_register_default_mobile_first_states();
+
+[class*="grid-"] {
+    @include gridle_state( xs ) {
+        width:100%;
+    }
+}
+
+// generate classes :
+@include gridle_generate_classes ( );
+
+// manage container width :
+.container {
+	max-width : 80%;
+	margin : 0 auto;
+}

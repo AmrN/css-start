@@ -1,0 +1,9 @@
+// ==========================================================================
+// Cover Image
+// ==========================================================================
+
+.cover-img {
+	@include img-replace('abstract2.jpg', 100%, 100% );
+	background-size: cover;
+	// background-position: bottom;
+}

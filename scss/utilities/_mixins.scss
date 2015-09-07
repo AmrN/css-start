@@ -1,0 +1,331 @@
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+// BEM selectors
+
+@mixin e($element) {
+	&__#{$element} {
+    @content;
+  }
+}
+@mixin m($modifier) {
+  &.-#{$modifier} {
+    @content;
+  }
+}
+
+// @mixin m($modifier) {
+//   &--#{$modifier} {
+//     @content;
+//   }
+// }
+
+// Media queries
+
+@mixin mq($break) {
+  @if $break == "small" {
+    @media (min-width: $brkpoint-sm) and (max-width: $brkpoint-md) {
+      @content;
+    }
+  }
+  @else if $break == "medium" {
+    @media (min-width: $brkpoint-md + 1) {
+      @content;
+    }
+  }
+  @else if $break == "large" {
+    @media (min-width: $brkpoint-lg) {
+      @content;
+    }
+  }
+   @else {
+   	@error "Whoops! No value could be retrieved for `#{$break}`. "
+  }
+}
+
+
+// Generate modifier mq classes
+
+@mixin mq-gen() {
+  @each $break, $extension in $mq-map {
+    &--#{$extension} {
+      @include mq($break) {
+        @content;
+      }
+    }
+  }
+}
+
+// Generate modifier vertical padding classes
+
+@mixin ws-gen($ws-map) {
+  @each $extension, $value in $ws-map {
+    @include m(tb-#{$extension}) {
+      padding-top: rhythm($value);
+      padding-bottom: rhythm($value);
+    }
+    @include m(t-#{$extension}) {
+      padding-top: rhythm($value);
+    }
+    @include m(b-#{$extension}) {
+      padding-bottom: rhythm($value);
+    }
+  }
+}
+
+
+
+// Generate modifier color classes
+
+@mixin bg-colors($map) {
+	@each $theme, $color in $map {
+		&--#{$theme} {
+			background-color: $color;    
+		}
+	}
+}
+
+
+// Generating :before or :after pseudo-element shapes
+
+@mixin p-el(
+	$el,
+	$el-w: null,
+	$el-h: null) {
+	@if $el == "before" or $el == "after" { 
+	  &:#{$el} {
+		  @extend %pseudos;
+		  width: $el-w;
+	  	height: $el-h;
+	    @content;
+	  }
+	} 
+	@else {
+    @error "`#{$el}` is not a valid pseudo-element.";
+	}
+}
+
+// Image replacement
+
+@mixin img-replace($img, $w, $h, $disp: block) {
+	background-image: url('#{$path--rel}/#{$img}');
+	background-repeat: no-repeat;
+	width: $w;
+	height: $h;
+	display: $disp;
+}
+      
+// Adjacent sibling margins
+
+@mixin doubly {
+	& + & {
+	  // margin-left: $margin;
+    @content;
+	}
+}
+
+// Grid Columns
+     
+@mixin g-columns {
+  @for $i from 1 through $g-col-count {
+    $context: g-context($g-col-width, $g-col-count ,$g-gutter-width) !global;  
+    // $target: ($g-col-width * $i) + ($g-gutter-width * ($i - 1));
+    $target: ($g-col-width * $i) + ($g-gutter-width * ($i*2));
+    
+    // Generate column modifier classes
+    &--#{$i} {
+      width: percentage($target / $context);
+    }
+  }
+}          
+
+// Gallery Grid
+@mixin gallery-grid($height, $hr-space, $vr-space) {
+  @extend .grid;
+  height: $height;
+  & > [class^="grid__col--"] {
+    @include mq(medium) {
+     padding: 0 $hr-space $vr-space 0; 
+     margin: 0;
+    }
+  }
+  @include e(image) {
+    display: block;
+    @include m(full-h) {
+      height: 100%;
+    }
+    @include m(half-h) {
+      height: 50%;
+    }
+
+    & > .image-container {
+      display: block;
+      width: 100%;
+      height: 100%;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+   }
+  }
+}
+
+// hover-overlay
+@mixin hover-overlay($bg-color, $trns-time: $trns-duration, $hover-opacity: 1) {
+  position: relative;
+  @include e(layer) {
+    position: absolute;
+    border-radius: inherit;
+    // z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $bg-color; 
+    opacity: 0; 
+    transition: all $trns-time;
+    @content;
+
+    &:hover {
+      opacity: $hover-opacity;
+    }
+  }
+}
+
+// Divider
+@mixin divider($line-color, $thikness: 1px, $style: solid) {
+  @include trailing-border($thikness, .5);
+  line-height: 0;
+  border-bottom-color: $line-color;
+  border-bottom-style: $style;
+  // line-height: 0;
+}
+
+// absolute centering and alignment
+
+@mixin abs-align($map) {
+  position: absolute;
+
+  $xtrans: 0;
+  $ytrans: 0;
+  $left: null;
+  $top: null;
+  $v-offset: 0;
+  $h-offset: 0;
+  $rotate: 0deg;
+  @if map-has-key($map, h-align) {
+    $h-align: map-get($map, h-align);
+    @if $h-align == left {
+      $left: 0;
+    }
+    @else if $h-align == left-out {
+      $left: 0;
+      $xtrans: -100%;
+    }
+    @else if $h-align == center {
+      $left: 50%;
+      $xtrans: -50%;
+    }
+    @else if $h-align == right {
+      $left: 100%;
+      $xtrans: -100%;
+    }
+    @else if $h-align == right-out {
+      $left: 100%;
+    }
+  }
+
+  @if map-has-key($map, v-align) {
+    $v-align: map-get($map, v-align); 
+      @if $v-align == top {
+        $top: 0;
+      }
+      @else if $v-align == top-out {
+        $top: 0;
+        $ytrans: -100%;
+      }
+      @else if $v-align == center {
+        $top: 50%;
+        $ytrans: -50%;
+      }
+      @else if $v-align == bottom {
+        $top: 100%;
+        $ytrans: -100%;
+      }
+      @else if $v-align == bottom-out {
+        $top: 100%;
+      }
+  }
+  
+
+  @if map-has-key($map, h-offset) {
+    $h-offset: map-get($map, h-offset);
+  }
+  @if map-has-key($map, v-offset) {
+    $v-offset: map-get($map, v-offset);
+  }
+
+  @if map-has-key($map, rotate) {
+    $rotate: map-get($map, rotate);
+  }
+  
+  @if $left != null {
+    left: $left;
+    margin-left: $h-offset;
+  }
+  @if $top != null {
+    top: $top;
+    margin-top: $v-offset;
+  }
+
+  // transform: translateX($xtrans) translateY($ytrans) rotate($rotate);
+  @include transform(translateX($xtrans) translateY($ytrans) rotate($rotate));
+}
+
+// Top-Bottom borders 
+
+@mixin top-bottom-borders($line-color, $thikness: 1px, $type: solid) {
+  border-top: $thikness $line-color $type;
+  border-bottom: $thikness $line-color $type; 
+}
+
+
+// typography: requires compass typography
+
+@mixin typo($fz: null, $ff: null, $fw: null, $tt: null, $c: null, $ld: null, $tr: null) {
+
+  @if $fz {
+    @include adjust-font-size-to($fz);
+  }
+
+  font-weight: $fw;
+  color: $c;
+  font-family: $ff;
+  text-transform: $tt;
+
+  @if not $fz {
+    $fz: $base-font-size;
+  }
+
+  @if $ld {
+    @include leader($ld, $fz);
+  }
+  @if $tr {
+    @include trailer($tr, $fz);
+  }
+  
+}
+
+// Generate classes for font sizes
+
+@mixin fz-gen($fz-map) {
+  @each $extension, $value in $fz-map {
+    .#{$extension} {
+      @include typo((
+        fz: $value
+      )...);
+    }
+  }
+}
